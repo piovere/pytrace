@@ -84,4 +84,16 @@ class Vec3:
         return self / self.length()
 
 Point3 = Vec3
-Color = Vec3
+
+class Color(Vec3):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+    
+    def __str__(self):
+        u = self.unit_vector()
+        
+        x = int(u.x * 255.999)
+        y = int(u.y * 255.999)
+        z = int(u.z * 255.999)
+
+        return f"{x} {y} {z}"

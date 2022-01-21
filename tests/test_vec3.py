@@ -1,4 +1,4 @@
-from pytrace.vec import Vec3
+from pytrace.vec import Vec3, Color
 import pytest
 
 @pytest.fixture
@@ -84,3 +84,7 @@ def test_cant_mul_by_str(setup):
     u, _, _ = setup
     with pytest.raises(TypeError):
         u * "Weee!"
+
+def test_color_contains_bound_values():
+    c = Color(45, 23, 8)
+    assert f"{c}" == "225 115 40"
