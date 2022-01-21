@@ -63,9 +63,6 @@ class Vec3:
     
     def __repr__(self) -> str:
         return f"Vec3({self.x}, {self.y}, {self.z})"
-
-    def __unicode__(self) -> str:
-        return f"{self.x}, {self.y}, {self.z}"
     
     def __str__(self) -> str:
         return f"{self.x} {self.y} {self.z}"
@@ -81,7 +78,7 @@ class Vec3:
         return self * (1 / o)
 
     def dot(self, o):
-        return self.x * o.x + self.y * o.y + self.z * o.z
+        return sum(self * o)
 
     def unit_vector(self):
         return self / self.length()
