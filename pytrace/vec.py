@@ -8,7 +8,7 @@ class Vec3:
         self.e2:float = e2
     
     def __neg__(self) -> Vec3:
-        ret = Vec3(-self.e0, -self.e1, -self.e2)
+        ret = self.__class__(-self.e0, -self.e1, -self.e2)
         return ret
     
     @property
@@ -23,32 +23,32 @@ class Vec3:
     def z(self) -> float:
         return self.e2
     
-    def __add__(self, o:Vec3) -> Vec3:
-        return Vec3(
+    def __add__(self, o:Vec3) -> self.__class__:
+        return self.__class__(
             self.x + o.x,
             self.y + o.y,
             self.z + o.z
         )
     
-    def __radd__(self, o:Union[int, Vec3]) -> Vec3:
+    def __radd__(self, o:Union[int, Vec3]) -> self.__class__:
         if o == 0:
             return self
     
-    def __sub__(self, o: Vec3) -> Vec3:
+    def __sub__(self, o: Vec3) -> self.__class__:
         return self + -o
 
-    def __mul__(self, o: Union[int, float, Vec3]) -> Vec3:
+    def __mul__(self, o: Union[int, float, Vec3]) -> self.__class__:
         if isinstance(o, Union[int, float]):
-            ret = Vec3(self.x * o, self.y * o, self.z * o)
+            ret = self.__class__(self.x * o, self.y * o, self.z * o)
         elif isinstance(o, Vec3):
-            ret = Vec3(self.x * o.x, self.y * o.y, self.z * o.z)
+            ret = self.__class__(self.x * o.x, self.y * o.y, self.z * o.z)
         else:
             raise TypeError(
                 f"Unsupported operation on {type(self)} and {type(o)}"
             )
         return ret
     
-    def __rmul__(self, o: Union[int, float, Vec3]) -> Vec3:
+    def __rmul__(self, o: Union[int, float, Vec3]) -> self.__class__:
         return self.__mul__(o)
 
     def length_squared(self) -> float:
@@ -62,7 +62,7 @@ class Vec3:
         return d[i]
     
     def __repr__(self) -> str:
-        return f"Vec3({self.x}, {self.y}, {self.z})"
+        return f"{self.__class__}({self.x}, {self.y}, {self.z})"
     
     def __str__(self) -> str:
         return f"{self.x} {self.y} {self.z}"
@@ -74,7 +74,7 @@ class Vec3:
     def tuple(self) -> tuple[float, float, float]:
         return self.x, self.y, self.z
     
-    def __truediv__(self, o:Union[int, float]) -> Vec3:
+    def __truediv__(self, o:Union[int, float]) -> self.__class__:
         return self * (1 / o)
 
     def dot(self, o):
