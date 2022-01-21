@@ -1,4 +1,5 @@
 from tqdm import trange, tqdm
+from pytrace.vec import Color
 
 def main():
     # set image dimensions
@@ -17,12 +18,8 @@ def main():
                 g = j / (image_height - 1)
                 b = 0.25
 
-                almost = 255.999
-
-                ir = int(almost * r)
-                ig = int(almost * g)
-                ib = int(almost * b)
+                pc = Color(r, g, b)
         
-                f.write(f"{ir} {ig} {ib}\n")
+                f.write(f"{pc}")
 
 main()
