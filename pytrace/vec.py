@@ -3,9 +3,7 @@ from typing import Union
 
 class Vec3:
     def __init__(self, e0:float=0, e1:float=0, e2:float=0):
-        self.e0:float = e0
-        self.e1:float = e1
-        self.e2:float = e2
+        self.v = np.array([e0, e1, e2])
     
     def __neg__(self) -> Vec3:
         ret = self.__class__(-self.e0, -self.e1, -self.e2)
